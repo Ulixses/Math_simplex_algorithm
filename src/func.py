@@ -11,7 +11,7 @@ class simplex(object):
         self.p5 = p5
 
 
-def pprint(data):
+def matrix_print(data):
     for i in data:
         print(i)
 
@@ -29,8 +29,7 @@ def make_matrix(n1, n2, n3, n4, p1, p2, p3, p4, p5):
 
 
 # 2-2
-def sel_col(matrix):
-    col_num = find_max_neg_col(matrix)
+def sel_col(matrix,col_num):
     n = 0
     dummy = []
     while n < len(matrix) - 1:
@@ -55,27 +54,35 @@ def find_max_neg_col(matrix):
 
 
 # 3-1
-def sel_pivot_pos(col, matrix):
+def sel_pivot_row_num(col, matrix):
     n = 0
     pivot_pos = 0
     col_num = len(matrix[0]) - 1
     dummy = []
-    my_min = 0
     while n < len(matrix) - 1:
         if matrix[n][col_num] != 0 or col[n] != 0:
-            dummy.append(matrix[n][col_num] / col[n])
-            if my_min > dummy[n]:
-                my_min = dummy[n]
-                pivot_pos=n
-                print(my_min,pivot_pos)
-        n = n+1
-    #print(dummy,pivot_pos)
-    return 0
+            dummy.append((matrix[n][col_num] / col[n], n))
+        n = n + 1
+    n = 0
+    my_min = dummy[0][0]
+    while n < len(dummy):
+        if my_min > dummy[n][0]:
+            my_min = dummy[n][0]
+            pivot_pos = dummy[n][1]
+        n = n + 1
+    return pivot_pos
 
 
-def pivot_one():
-    return 0
+# 4-1
+def pivot_one(pivot_row_num, matrix,col_num,pivot_ele):
+    col_len = len(matrix[0])-1
+    dummy = []
+    for i in matrix[pivot_row_num]:
+        dummy.append(i/pivot_ele)
+    matrix[pivot_row_num] = dummy
+    return matrix
 
 
+# 5-1
 def make_zero():
     return 0
