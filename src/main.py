@@ -2,44 +2,45 @@
 
 import sys
 import utils
-from functions import Task
+import func
 
 
 def main():
     argc = len(sys.argv)
     if argc != 10:
-        utils.error('Missing command line argument.')
-    else:
         if sys.argv[1] == '-h':
             print(utils.help())
         else:
-            n1 = sys.argv[1]
-            n2 = sys.argv[2]
-            n3 = sys.argv[3]
-            n4 = sys.argv[4]
-            po = sys.argv[5]
-            pw = sys.argv[6]
-            pc = sys.argv[7]
-            pb = sys.argv[8]
-            ps = sys.argv[9]
+            utils.error('Missing command line argument.')
+    else:
+        n = [sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4]]
+        po = sys.argv[5]
+        pw = sys.argv[6]
+        pc = sys.argv[7]
+        pb = sys.argv[8]
+        ps = sys.argv[9]
 
-            print("Resources: "+n1+" F1, "+n2+" F2, "+n3
-            +" F3, "+n4+" F4\n\n")
+        # print("Resources: " + n[0] + " F1, " + n[1] + " F2, " + n[2]
+        #       + " F3, " + n[3] + " F4\n")
 
-            ### units function
-            
-            names = ["Oat","Wheat","Corn","Barley","Soy"]
-            units = Task(n1,n2,n3,n4,po,pw,pc,pb,ps)
-            
-            for i in range(len(units)):
-                print(names[i]+": "+units[i]+" at "+sys.argv[4+i]+"/unit")
-                
+        names = ["Oat", "Wheat", "Corn", "Barley", "Soy"]
 
-            
+        #1
+        matrix = func.make_matrix(n[0], n[1], n[2], n[3], po, pw, pc, pb, ps)
+        # while 문
+        # 2
+        col = func.sel_col(matrix)
+        # 3
+        pivot_element = func.sel_pivot_pos(col,matrix)
+        # 4
 
-            
- 
+        # 5
+
+        # for i in range(len(names)):
+        #     print(names[i] + ": " + " units at $" + sys.argv[5 + i] + "/unit")
+        #
+        # print("\nTotal production value:" + " $")
+
 
 if __name__ == '__main__':
     main()
-  
