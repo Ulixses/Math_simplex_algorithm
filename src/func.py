@@ -128,8 +128,7 @@ def make_other_zero(matrix_pivot_one, pivot_row_num, pivot_col_num):
                         matrix = matrix_and_ele[0]
                         ele = matrix_and_ele[1]
         ele_row_num += 1
-    matrix_print(matrix)
-    return 0
+    return matrix
 
 
 # 5-1
@@ -184,3 +183,15 @@ def minus_1(matrix, col_count, ele_row_num, pivot_row_num, pivot_col_num, ele):
     return matrix, ele
 
 
+# 6
+def loop_check_zero(matrix):
+    objective_row_num = len(matrix) - 1
+    objective_row = matrix[objective_row_num]
+    # check_pivot_col_num = [pivot_col_num]
+    # for col_num in check_pivot_col_num:
+    #     if col_num != pivot_col_num:
+    for ele in objective_row:
+        if ele < 0:
+            return True
+        else:
+            return False
