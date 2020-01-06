@@ -20,8 +20,8 @@ def main():
         pb = sys.argv[8]
         ps = sys.argv[9]
 
-        # print("Resources: " + n[0] + " F1, " + n[1] + " F2, " + n[2]
-        #       + " F3, " + n[3] + " F4\n")
+        print("Resources: " + n[0] + " F1, " + n[1] + " F2, " + n[2]
+              + " F3, " + n[3] + " F4\n")
 
         names = ["Oat", "Wheat", "Corn", "Barley", "Soy"]
 
@@ -36,10 +36,10 @@ def main():
 
         # 5
 
-        # for i in range(len(names)):
-        #     print(names[i] + ": " + " units at $" + sys.argv[5 + i] + "/unit")
-        #
-        # print("\nTotal production value:" + " $")
+        for i in range(len(names)):
+            print(names[i] + ": " + " units at $" + sys.argv[5 + i] + "/unit")
+        
+        print("\nTotal production value:" + " $")
 
 
 if __name__ == '__main__':
