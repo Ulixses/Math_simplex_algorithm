@@ -29,11 +29,11 @@ def make_matrix(n1, n2, n3, n4, p1, p2, p3, p4, p5):
 
 
 # 2-2
-def sel_col(matrix,col_num):
+def sel_col(matrix, pivot_col_num):
     n = 0
     dummy = []
     while n < len(matrix) - 1:
-        dummy.append(matrix[n][col_num])
+        dummy.append(matrix[n][pivot_col_num])
         n += 1
     col = dummy
 
@@ -48,9 +48,9 @@ def find_max_neg_col(matrix):
     for i in matrix[last_row]:
         if float(-1) * i > my_max:
             my_max = float(-1) * i
-            col_num = n
+            pivot_col_num = n
         n += 1
-    return col_num
+    return pivot_col_num
 
 
 # 3-1
@@ -74,15 +74,46 @@ def sel_pivot_row_num(col, matrix):
 
 
 # 4-1
-def pivot_one(pivot_row_num, matrix,col_num,pivot_ele):
-    col_len = len(matrix[0])-1
+def pivot_one(pivot_row_num, matrix, pivot_col_num, pivot_ele):
+    col_len = len(matrix[0]) - 1
     dummy = []
     for i in matrix[pivot_row_num]:
-        dummy.append(i/pivot_ele)
+        dummy.append(i / pivot_ele)
     matrix[pivot_row_num] = dummy
     return matrix
 
 
 # 5-1
-def make_zero():
+def make_other_zero(matrix_pivot_one, pivot_row_num, pivot_col_num):
+    matrix = matrix_pivot_one
+    col_count = len(matrix[0])
+    pivot = matrix[pivot_row_num][pivot_col_num]
+    ele_row_num = 0
+    # check whether each elements in pivot_col are 0  or not.
+    while ele_row_num < len(matrix):
+        ele = matrix[ele_row_num][pivot_col_num]
+        if ele != 0:
+            # if it is not 0
+            if ele < 0:
+                # if it is positive number
+                if ele <= -100:
+                    matrix_and_ele = plus_100(matrix, col_count, ele_row_num, pivot_row_num, pivot_col_num,ele)
+                    matrix = matrix_and_ele[0]
+                    ele = matrix_and_ele[1]
+                    matrix_print(matrix)
+                    print(ele)
+
+        ele_row_num += 1
     return 0
+
+
+def plus_100(matrix, col_count, ele_row_num, pivot_row_num, pivot_col_num,ele):
+    while ele <= -100:
+        dummy = []
+        k = 0
+        while k < col_count:
+            dummy.append(matrix[ele_row_num][k] + 100 * matrix[pivot_row_num][k])
+            k += 1
+        matrix[ele_row_num] = dummy
+        ele = matrix[ele_row_num][pivot_col_num]
+    return matrix, ele
