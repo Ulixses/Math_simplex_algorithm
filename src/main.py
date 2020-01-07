@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
 import sys
+
+sys.path.append('src/')
 import utils
 import func
 
@@ -8,7 +10,7 @@ import func
 def main():
     argc = len(sys.argv)
     if argc != 10:
-        if sys.argv[1] == '-h':
+        if argc >= 2 and sys.argv[1] == '-h':
             print(utils.help())
         else:
             utils.error('Missing command line argument.')
