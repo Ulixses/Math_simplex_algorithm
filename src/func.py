@@ -64,7 +64,8 @@ def sel_pivot_row_num(col, matrix):
     # print(col)
     while n < len(matrix) - 1:
         # if matrix[n][last_col] != 0 and matrix[n][last_col] != 0.0 and col[n] != 0 and col[n] != 0.0:
-        if col[n] != 0 and col[n] != 0.0:
+        # if col[n] != 0 and col[n] != 0.0: # 변경 전
+        if col[n] != 0 and col[n] != 0.0 and col[n] > 0:  # 변경 전
             # print(col[n])
             dummy.append((round(matrix[n][last_col] / col[n], 2), n))
         n = n + 1
@@ -142,7 +143,7 @@ def plus_100(matrix, col_count, ele_row_num, pivot_row_num, pivot_col_num, ele):
         dummy = []
         k = 0
         while k < col_count:
-            dummy.append(round((matrix[ele_row_num][k] + 100 * matrix[pivot_row_num][k]),2))
+            dummy.append(round((matrix[ele_row_num][k] + 100 * matrix[pivot_row_num][k]), 2))
             k += 1
         matrix[ele_row_num] = dummy
         ele = matrix[ele_row_num][pivot_col_num]
@@ -155,7 +156,7 @@ def plus_1(matrix, col_count, ele_row_num, pivot_row_num, pivot_col_num, ele):
         dummy = []
         k = 0
         while k < col_count:
-            dummy.append(round((matrix[ele_row_num][k] + 1 * matrix[pivot_row_num][k]),2))
+            dummy.append(round((matrix[ele_row_num][k] + 1 * matrix[pivot_row_num][k]), 2))
             k += 1
         matrix[ele_row_num] = dummy
         ele = matrix[ele_row_num][pivot_col_num]
@@ -168,7 +169,7 @@ def minus_100(matrix, col_count, ele_row_num, pivot_row_num, pivot_col_num, ele)
         dummy = []
         k = 0
         while k < col_count:
-            dummy.append(round((matrix[ele_row_num][k] - 100 * matrix[pivot_row_num][k]),2))
+            dummy.append(round((matrix[ele_row_num][k] - 100 * matrix[pivot_row_num][k]), 2))
             k += 1
         matrix[ele_row_num] = dummy
         ele = matrix[ele_row_num][pivot_col_num]
@@ -181,7 +182,7 @@ def minus_1(matrix, col_count, ele_row_num, pivot_row_num, pivot_col_num, ele):
         dummy = []
         k = 0
         while k < col_count:
-            dummy.append(round((matrix[ele_row_num][k] - 1 * matrix[pivot_row_num][k]),2))
+            dummy.append(round((matrix[ele_row_num][k] - 1 * matrix[pivot_row_num][k]), 2))
             k += 1
         matrix[ele_row_num] = dummy
         ele = matrix[ele_row_num][pivot_col_num]
