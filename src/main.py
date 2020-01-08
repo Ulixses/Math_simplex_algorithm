@@ -1,20 +1,24 @@
 #!/usr/bin/env python3
 
 import sys
-
 sys.path.append('src/')
 import utils
 import func
 
-
 def main():
     argc = len(sys.argv)
-    if argc != 10:
-        if argc >= 2 and sys.argv[1] == '-h':
-            print(utils.help())
-        else:
-            utils.error('Missing command line argument.')
-    else:
+    if argc >= 2 and sys.argv[1] == '-h':
+        print(utils.help())
+    elif argc == 10:
+        try:
+            for i in range(1,10):
+                if int(sys.argv[i]) < 0:
+                    utils.error('Numbers must be >= 0')
+        except ValueError:
+            utils.error('Arguments must be numbers')
+        #End of error checking
+        print("Resources: " + n[0] + " F1, " + n[1] + " F2, " + n[2]+ " F3, " + n[3] + " F4\n")
+        
         n = [sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4]]
         po = sys.argv[5]
         pw = sys.argv[6]
@@ -22,8 +26,7 @@ def main():
         pb = sys.argv[8]
         ps = sys.argv[9]
 
-        # print("Resources: " + n[0] + " F1, " + n[1] + " F2, " + n[2]
-        #       + " F3, " + n[3] + " F4\n")
+        
 
         names = ["Oat", "Wheat", "Corn", "Barley", "Soy"]
 
@@ -55,7 +58,8 @@ def main():
         #     print(names[i] + ": " + " units at $" + sys.argv[5 + i] + "/unit")
         #
         # print("\nTotal production value:" + " $")
-
+    else:
+        utils.error('Error: command line argument.')
 
 if __name__ == '__main__':
     main()
