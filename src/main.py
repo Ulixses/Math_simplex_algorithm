@@ -36,7 +36,7 @@ def main():
         #count = 0
         # 1
         matrix = func.make_matrix(n[0], n[1], n[2], n[3], po, pw, pc, pb, ps)
-        # while 문
+        # while loop
         while func.loop_check_zero(matrix):
             # 2
             pivot_col_num = func.find_max_neg_col(matrix)

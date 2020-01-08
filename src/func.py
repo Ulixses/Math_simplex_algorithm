@@ -7,11 +7,11 @@ def matrix_print(data):
 # 1
 def make_matrix(n1, n2, n3, n4, p1, p2, p3, p4, p5):
     matrix = [
-        [1, 0, 1, 0, 2, 1, 0, 0, 0, 0, float(n1)],
-        [1, 2, 0, 1, 0, 0, 1, 0, 0, 0, float(n2)],
-        [2, 1, 0, 1, 0, 0, 0, 1, 0, 0, float(n3)],
-        [0, 0, 3, 1, 2, 0, 0, 0, 1, 0, float(n4)],
-        [-float(p1), -float(p2), -float(p3), -float(p4), -float(p5), 0, 0, 0, 0, 1, 0]]
+        [1.0, 0.0, 1.0, 0.0, 2.0, 1.0, 0.0, 0.0, 0.0, 0.0, float(n1)],
+        [1.0, 2.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, float(n2)],
+        [2.0, 1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, float(n3)],
+        [0.0, 0.0, 3.0, 1.0, 2.0, 0.0, 0.0, 0.0, 1.0, 0.0, float(n4)],
+        [-float(p1), -float(p2), -float(p3), -float(p4), -float(p5), 0.0, 0.0, 0.0, 0.0, 1.0, 0.0]]
 
     return matrix
 
@@ -57,8 +57,11 @@ def sel_pivot_row_num(col, matrix):
 # 4-1
 def pivot_one(pivot_row_num, matrix, pivot_col_num, pivot_ele):
     dummy = []
+    print("pivot_ele :",pivot_ele)
+    print("matrix_pivot_row_num",matrix[pivot_row_num])
     for i in matrix[pivot_row_num]:
-        dummy.append(round(i / pivot_ele, 2))
+        dummy.append(round((i / pivot_ele),2))
+    print("dummy : ",dummy)
     matrix[pivot_row_num] = dummy
 
 # 5-1
