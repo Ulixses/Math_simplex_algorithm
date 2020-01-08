@@ -57,11 +57,16 @@ def find_max_neg_col(matrix):
 def sel_pivot_row_num(col, matrix):
     n = 0
     pivot_pos = 0
-    col_num = len(matrix[0]) - 1
+    last_col = len(matrix[0]) - 1
     dummy = []
+    # # print("---------------------------fix--------------------------")
+    # print("col")
+    # print(col)
     while n < len(matrix) - 1:
-        if matrix[n][col_num] != 0 or col[n] != 0:
-            dummy.append((matrix[n][col_num] / col[n], n))
+        # if matrix[n][last_col] != 0 and matrix[n][last_col] != 0.0 and col[n] != 0 and col[n] != 0.0:
+        if col[n] != 0 and col[n] != 0.0:
+            # print(col[n])
+            dummy.append((round(matrix[n][last_col] / col[n], 2), n))
         n = n + 1
     n = 0
     my_min = dummy[0][0]
@@ -78,7 +83,7 @@ def pivot_one(pivot_row_num, matrix, pivot_col_num, pivot_ele):
     col_len = len(matrix[0]) - 1
     dummy = []
     for i in matrix[pivot_row_num]:
-        dummy.append(i / pivot_ele)
+        dummy.append(round(i / pivot_ele, 2))
     matrix[pivot_row_num] = dummy
     return matrix
 
@@ -137,7 +142,7 @@ def plus_100(matrix, col_count, ele_row_num, pivot_row_num, pivot_col_num, ele):
         dummy = []
         k = 0
         while k < col_count:
-            dummy.append(matrix[ele_row_num][k] + 100 * matrix[pivot_row_num][k])
+            dummy.append(round((matrix[ele_row_num][k] + 100 * matrix[pivot_row_num][k]),2))
             k += 1
         matrix[ele_row_num] = dummy
         ele = matrix[ele_row_num][pivot_col_num]
@@ -150,7 +155,7 @@ def plus_1(matrix, col_count, ele_row_num, pivot_row_num, pivot_col_num, ele):
         dummy = []
         k = 0
         while k < col_count:
-            dummy.append(matrix[ele_row_num][k] + 1 * matrix[pivot_row_num][k])
+            dummy.append(round((matrix[ele_row_num][k] + 1 * matrix[pivot_row_num][k]),2))
             k += 1
         matrix[ele_row_num] = dummy
         ele = matrix[ele_row_num][pivot_col_num]
@@ -163,7 +168,7 @@ def minus_100(matrix, col_count, ele_row_num, pivot_row_num, pivot_col_num, ele)
         dummy = []
         k = 0
         while k < col_count:
-            dummy.append(matrix[ele_row_num][k] - 100 * matrix[pivot_row_num][k])
+            dummy.append(round((matrix[ele_row_num][k] - 100 * matrix[pivot_row_num][k]),2))
             k += 1
         matrix[ele_row_num] = dummy
         ele = matrix[ele_row_num][pivot_col_num]
@@ -176,7 +181,7 @@ def minus_1(matrix, col_count, ele_row_num, pivot_row_num, pivot_col_num, ele):
         dummy = []
         k = 0
         while k < col_count:
-            dummy.append(matrix[ele_row_num][k] - 1 * matrix[pivot_row_num][k])
+            dummy.append(round((matrix[ele_row_num][k] - 1 * matrix[pivot_row_num][k]),2))
             k += 1
         matrix[ele_row_num] = dummy
         ele = matrix[ele_row_num][pivot_col_num]
@@ -184,14 +189,81 @@ def minus_1(matrix, col_count, ele_row_num, pivot_row_num, pivot_col_num, ele):
 
 
 # 6
-def loop_check_zero(matrix):
+def loop_check_zero(matrix, already_pivot_cal_num):
     objective_row_num = len(matrix) - 1
     objective_row = matrix[objective_row_num]
-    # check_pivot_col_num = [pivot_col_num]
-    # for col_num in check_pivot_col_num:
-    #     if col_num != pivot_col_num:
-    for ele in objective_row:
-        if ele < 0:
-            return True
-        else:
-            return False
+    result = True
+    print("objective row")
+    print(objective_row)
+    for index, value in enumerate(objective_row):
+        for i in already_pivot_cal_num:
+            if i == index:
+                # print("result is true")
+                # print(i,index)
+                result = True
+                break
+            else:
+                # print("result is false")
+                # result = False
+                break
+    return result
+
+    # dummy = my_del(already_pivot_cal_num, objective_row)
+    # for ele in dummy:
+    #     if ele < 0:
+    #         print("negative ele")
+    #         print(ele)
+    #         print("loop start")
+    #         return True
+    #     else:
+    #         return False
+
+# # 6
+# def loop_check_zero(matrix, already_pivot_cal_num):
+#     objective_row_num = len(matrix) - 1
+#     objective_row = matrix[objective_row_num]
+#     dummy = my_del(already_pivot_cal_num, objective_row)
+#     print("except already pivot col num")
+#     print(dummy)
+#     for ele in dummy:
+#         if ele < 0:
+#             print("negative ele")
+#             print(ele)
+#             print("loop start")
+#             return True
+#         else:
+#             return False
+
+# 6-2
+# def my_del(already_pivot_col_num, objective_row):
+# #     dummy = []
+# #     for index, value in enumerate(objective_row):
+# #         for i in already_pivot_col_num:
+# #             if index != i:
+# #                 continue
+# #             else:
+# #                 dummy.append(value)
+# print(dummy)
+# dummy2 = []
+# for index, value in enumerate(objective_row):
+#     for i in dummy:
+#         if check(value, dummy):
+#             break
+#         else:
+#             dummy2.append(index)
+#             break
+# print(dummy2)
+#
+# return dummy2
+
+
+# 6-1
+# def check(value, dummy):
+#     result = True
+#     for i in dummy:
+#         if i == value:
+#             result = True
+#             break
+#         else:
+#             result = False
+#     return result
