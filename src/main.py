@@ -73,7 +73,7 @@ def main():
         total = 0
         for i in range(5):
             total +=  quantities[i] * float(sys.argv[5 + i])
-        print("\nTotal production value:" , "{0:.2f}".format(total), " $")
+        print("\nTotal production value:" + " ${0:.2f}".format(total))
 
 
 if __name__ == '__main__':

@@ -57,11 +57,8 @@ def sel_pivot_row_num(col, matrix):
 # 4-1
 def pivot_one(pivot_row_num, matrix, pivot_col_num, pivot_ele):
     dummy = []
-    print("pivot_ele :",pivot_ele)
-    print("matrix_pivot_row_num",matrix[pivot_row_num])
     for i in matrix[pivot_row_num]:
         dummy.append(round((i / pivot_ele),2))
-    print("dummy : ",dummy)
     matrix[pivot_row_num] = dummy
 
 # 5-1
