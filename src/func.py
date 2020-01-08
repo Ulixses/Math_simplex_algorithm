@@ -1,20 +1,6 @@
-class simplex(object):
-    def __init__(self, n1, n2, n3, n4, p1, p2, p3, p4, p5):
-        self.n1 = n1
-        self.n2 = n2
-        self.n3 = n3
-        self.n4 = n4
-        self.p1 = p1
-        self.p2 = p2
-        self.p3 = p3
-        self.p4 = p4
-        self.p5 = p5
-
-
 def matrix_print(data):
     for i in data:
         print(i)
-
 
 # 1
 def make_matrix(n1, n2, n3, n4, p1, p2, p3, p4, p5):
@@ -27,32 +13,24 @@ def make_matrix(n1, n2, n3, n4, p1, p2, p3, p4, p5):
 
     return matrix
 
-
-# 2-2
-def sel_col(matrix, pivot_col_num):
-    n = 0
-    dummy = []
-    while n < len(matrix) - 1:
-        dummy.append(matrix[n][pivot_col_num])
-        n += 1
-    col = dummy
-
-    return col
-
-
 # 2-1
 def find_max_neg_col(matrix):
     last_row = len(matrix) - 1
     my_max = 0
     n = 0
-    pivot_col_num = -1
     for i in matrix[last_row]:
-        if float(-1) * i > my_max:
-            my_max = float(-1) * i
+        if -i > my_max:
+            my_max = -i
             pivot_col_num = n
         n += 1
     return pivot_col_num
 
+# 2-2
+def sel_col(matrix, pivot_col_num):
+    dummy = []
+    for x in matrix:
+        dummy.append(x[pivot_col_num])
+    return dummy
 
 # 3-1
 def sel_pivot_row_num(col, matrix):
@@ -61,7 +39,7 @@ def sel_pivot_row_num(col, matrix):
     last_col = len(matrix[0]) - 1
     dummy = []
     while n < len(matrix) - 1:
-        if col[n] != 0 and col[n] != 0.0 and col[n] > 0:  
+        if col[n] > 0:
             dummy.append((round(matrix[n][last_col] / col[n], 2), n))
         n = n + 1
     n = 0
@@ -74,10 +52,8 @@ def sel_pivot_row_num(col, matrix):
         n = n + 1
     return pivot_pos
 
-
 # 4-1
 def pivot_one(pivot_row_num, matrix, pivot_col_num, pivot_ele):
-    col_len = len(matrix[0]) - 1
     dummy = []
     print("pivot_ele :",pivot_ele)
     print("matrix_pivot_row_num",matrix[pivot_row_num])
@@ -85,12 +61,9 @@ def pivot_one(pivot_row_num, matrix, pivot_col_num, pivot_ele):
         dummy.append(round((i / pivot_ele),2))
     print("dummy : ",dummy)
     matrix[pivot_row_num] = dummy
-    return matrix
-
 
 # 5-1
-def make_other_zero(matrix_pivot_one, pivot_row_num, pivot_col_num):
-    matrix = matrix_pivot_one
+def make_other_zero(matrix, pivot_row_num, pivot_col_num):
     col_count = len(matrix[0])
     pivot = matrix[pivot_row_num][pivot_col_num]
     ele_row_num = 0
@@ -135,7 +108,6 @@ def make_other_zero(matrix_pivot_one, pivot_row_num, pivot_col_num):
         ele_row_num += 1
     return matrix
 
-
 # 5-1
 def plus_100(matrix, col_count, ele_row_num, pivot_row_num, pivot_col_num, ele):
     while ele <= -100:
@@ -147,7 +119,6 @@ def plus_100(matrix, col_count, ele_row_num, pivot_row_num, pivot_col_num, ele):
         matrix[ele_row_num] = dummy
         ele = matrix[ele_row_num][pivot_col_num]
     return matrix, ele
-
 
 # 5-2
 def plus_1(matrix, col_count, ele_row_num, pivot_row_num, pivot_col_num, ele):
@@ -161,7 +132,6 @@ def plus_1(matrix, col_count, ele_row_num, pivot_row_num, pivot_col_num, ele):
         ele = matrix[ele_row_num][pivot_col_num]
     return matrix, ele
 
-
 # 5-3
 def minus_100(matrix, col_count, ele_row_num, pivot_row_num, pivot_col_num, ele):
     while ele >= 100:
@@ -173,7 +143,6 @@ def minus_100(matrix, col_count, ele_row_num, pivot_row_num, pivot_col_num, ele)
         matrix[ele_row_num] = dummy
         ele = matrix[ele_row_num][pivot_col_num]
     return matrix, ele
-
 
 # 5-4
 def minus_1(matrix, col_count, ele_row_num, pivot_row_num, pivot_col_num, ele):
@@ -187,19 +156,9 @@ def minus_1(matrix, col_count, ele_row_num, pivot_row_num, pivot_col_num, ele):
         ele = matrix[ele_row_num][pivot_col_num]
     return matrix, ele
 
-
 # 6
-def loop_check_zero(matrix, already_pivot_cal_num):
-    objective_row_num = len(matrix) - 1
-    objective_row = matrix[objective_row_num]
-    result = True
-    print("objective row")
-    print(objective_row)
-    for index, value in enumerate(objective_row):
-        for i in already_pivot_cal_num:
-            if i == index:
-                result = True
-                break
-            else:
-                break
-    return result
+def loop_check_zero(matrix):
+    for x in matrix[len(matrix) - 1]:
+        if x < 0:
+            return True
+    return False
