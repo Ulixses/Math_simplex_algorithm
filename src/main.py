@@ -33,41 +33,29 @@ def main():
         names = ["Oat", "Wheat", "Corn", "Barley", "Soy"]
 
         count = 0
-        already_pivot_col = []
         # 1
         matrix = func.make_matrix(n[0], n[1], n[2], n[3], po, pw, pc, pb, ps)
         # while 문
-        while func.loop_check_zero(matrix,already_pivot_col):
-            print("before start")
+        while func.loop_check_zero(matrix):
+            print("Current state: ")
             func.matrix_print(matrix)
-            # print("during loop start check")
             # 2
             pivot_col_num = func.find_max_neg_col(matrix)
             print("pivot_col_num: ", pivot_col_num)
-            if pivot_col_num == -1:
-                break
-            already_pivot_col.append(pivot_col_num)
             col = func.sel_col(matrix, pivot_col_num)
-            # print("col")
-            # print(col)
             # 3
             pivot_row_num = func.sel_pivot_row_num(col, matrix)
             print("pivot_row_num: ", pivot_row_num)
             # 4
             pivot_ele = matrix[pivot_row_num][pivot_col_num]
-            matrix_pivot_one = func.pivot_one(pivot_row_num, matrix, pivot_col_num, pivot_ele)
-            print("matrix_pivot_one")
-            func.matrix_print(matrix_pivot_one)
+            func.pivot_one(pivot_row_num, matrix, pivot_col_num, pivot_ele)
+            print("matrix_pivot_one: ")
+            func.matrix_print(matrix)
             # 5
-            other_zero_matrix = func.make_other_zero(matrix_pivot_one, pivot_row_num, pivot_col_num)
+            other_zero_matrix = func.make_other_zero(matrix, pivot_row_num, pivot_col_num)
             matrix = other_zero_matrix
             print("five stage end")
             func.matrix_print(matrix)
-            print("already pivot col")
-            print(already_pivot_col)
-            # print("during loop end check")
-            # print(func.loop_check_zero(matrix))
-
             count += 1
             print("count : " , count)
         print("loop finish")
