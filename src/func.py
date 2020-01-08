@@ -23,8 +23,8 @@ def make_matrix(n1, n2, n3, n4, p1, p2, p3, p4, p5):
         [1, 2, 0, 1, 0, 0, 1, 0, 0, 0, float(n2)],
         [2, 1, 0, 1, 0, 0, 0, 1, 0, 0, float(n3)],
         [0, 0, 3, 1, 2, 0, 0, 0, 1, 0, float(n4)],
-        [float(-1) * float(p1), float(-1) * float(p2), float(-1) * float(p3),
-         float(-1) * float(p4), float(-1) * float(p5), 0, 0, 0, 0, 1, 0]]
+        [-float(p1), -float(p2), -float(p3), -float(p4), -float(p5), 0, 0, 0, 0, 1, 0]]
+
     return matrix
 
 
@@ -45,7 +45,7 @@ def find_max_neg_col(matrix):
     last_row = len(matrix) - 1
     my_max = 0
     n = 0
-    pivot_col_num = 0
+    pivot_col_num = -1
     for i in matrix[last_row]:
         if float(-1) * i > my_max:
             my_max = float(-1) * i
