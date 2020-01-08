@@ -65,13 +65,14 @@ def sel_pivot_row_num(col, matrix):
     # print(col)
     while n < len(matrix) - 1:
         # if matrix[n][last_col] != 0 and matrix[n][last_col] != 0.0 and col[n] != 0 and col[n] != 0.0:
-        # if col[n] != 0 and col[n] != 0.0: # 변경 전
-        if col[n] != 0 and col[n] != 0.0 and col[n] > 0:  # 변경 전
+        # if col[n] != 0 and col[n] != 0.0: 
+        if col[n] != 0 and col[n] != 0.0 and col[n] > 0:  
             # print(col[n])
             dummy.append((round(matrix[n][last_col] / col[n], 2), n))
         n = n + 1
     n = 0
     my_min = dummy[0][0]
+    pivot_pos = dummy[0][1]
     while n < len(dummy):
         if my_min > dummy[n][0]:
             my_min = dummy[n][0]
@@ -209,63 +210,3 @@ def loop_check_zero(matrix, already_pivot_cal_num):
                 # result = False
                 break
     return result
-
-    # dummy = my_del(already_pivot_cal_num, objective_row)
-    # for ele in dummy:
-    #     if ele < 0:
-    #         print("negative ele")
-    #         print(ele)
-    #         print("loop start")
-    #         return True
-    #     else:
-    #         return False
-
-# # 6
-# def loop_check_zero(matrix, already_pivot_cal_num):
-#     objective_row_num = len(matrix) - 1
-#     objective_row = matrix[objective_row_num]
-#     dummy = my_del(already_pivot_cal_num, objective_row)
-#     print("except already pivot col num")
-#     print(dummy)
-#     for ele in dummy:
-#         if ele < 0:
-#             print("negative ele")
-#             print(ele)
-#             print("loop start")
-#             return True
-#         else:
-#             return False
-
-# 6-2
-# def my_del(already_pivot_col_num, objective_row):
-# #     dummy = []
-# #     for index, value in enumerate(objective_row):
-# #         for i in already_pivot_col_num:
-# #             if index != i:
-# #                 continue
-# #             else:
-# #                 dummy.append(value)
-# print(dummy)
-# dummy2 = []
-# for index, value in enumerate(objective_row):
-#     for i in dummy:
-#         if check(value, dummy):
-#             break
-#         else:
-#             dummy2.append(index)
-#             break
-# print(dummy2)
-#
-# return dummy2
-
-
-# 6-1
-# def check(value, dummy):
-#     result = True
-#     for i in dummy:
-#         if i == value:
-#             result = True
-#             break
-#         else:
-#             result = False
-#     return result

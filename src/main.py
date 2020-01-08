@@ -36,7 +36,7 @@ def main():
         already_pivot_col = []
         # 1
         matrix = func.make_matrix(n[0], n[1], n[2], n[3], po, pw, pc, pb, ps)
-        # while 문
+        # while loop
         while func.loop_check_zero(matrix,already_pivot_col):
             print("before start")
             func.matrix_print(matrix)
