@@ -19,11 +19,11 @@ def matrix_print(data):
 # 1
 def make_matrix(n1, n2, n3, n4, p1, p2, p3, p4, p5):
     matrix = [
-        [1, 0, 1, 0, 2, 1, 0, 0, 0, 0, float(n1)],
-        [1, 2, 0, 1, 0, 0, 1, 0, 0, 0, float(n2)],
-        [2, 1, 0, 1, 0, 0, 0, 1, 0, 0, float(n3)],
-        [0, 0, 3, 1, 2, 0, 0, 0, 1, 0, float(n4)],
-        [-float(p1), -float(p2), -float(p3), -float(p4), -float(p5), 0, 0, 0, 0, 1, 0]]
+        [1.0, 0.0, 1.0, 0.0, 2.0, 1.0, 0.0, 0.0, 0.0, 0.0, float(n1)],
+        [1.0, 2.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, float(n2)],
+        [2.0, 1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, float(n3)],
+        [0.0, 0.0, 3.0, 1.0, 2.0, 0.0, 0.0, 0.0, 1.0, 0.0, float(n4)],
+        [-float(p1), -float(p2), -float(p3), -float(p4), -float(p5), 0.0, 0.0, 0.0, 0.0, 1.0, 0.0]]
 
     return matrix
 
@@ -60,14 +60,8 @@ def sel_pivot_row_num(col, matrix):
     pivot_pos = 0
     last_col = len(matrix[0]) - 1
     dummy = []
-    # # print("---------------------------fix--------------------------")
-    # print("col")
-    # print(col)
     while n < len(matrix) - 1:
-        # if matrix[n][last_col] != 0 and matrix[n][last_col] != 0.0 and col[n] != 0 and col[n] != 0.0:
-        # if col[n] != 0 and col[n] != 0.0: 
         if col[n] != 0 and col[n] != 0.0 and col[n] > 0:  
-            # print(col[n])
             dummy.append((round(matrix[n][last_col] / col[n], 2), n))
         n = n + 1
     n = 0
@@ -85,8 +79,11 @@ def sel_pivot_row_num(col, matrix):
 def pivot_one(pivot_row_num, matrix, pivot_col_num, pivot_ele):
     col_len = len(matrix[0]) - 1
     dummy = []
+    print("pivot_ele :",pivot_ele)
+    print("matrix_pivot_row_num",matrix[pivot_row_num])
     for i in matrix[pivot_row_num]:
-        dummy.append(round(i / pivot_ele, 2))
+        dummy.append(round((i / pivot_ele),2))
+    print("dummy : ",dummy)
     matrix[pivot_row_num] = dummy
     return matrix
 
@@ -201,12 +198,8 @@ def loop_check_zero(matrix, already_pivot_cal_num):
     for index, value in enumerate(objective_row):
         for i in already_pivot_cal_num:
             if i == index:
-                # print("result is true")
-                # print(i,index)
                 result = True
                 break
             else:
-                # print("result is false")
-                # result = False
                 break
     return result
