@@ -44,6 +44,7 @@ def sel_pivot_row_num(col, matrix):
         n = n + 1
     n = 0
     my_min = dummy[0][0]
+    pivot_pos = dummy[0][1]
     while n < len(dummy):
         if my_min > dummy[n][0]:
             my_min = dummy[n][0]
