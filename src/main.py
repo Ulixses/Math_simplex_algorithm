@@ -33,31 +33,20 @@ def main():
 
         names = ["Oat", "Wheat", "Corn", "Barley", "Soy"]
 
-        #count = 0
         # 1
         matrix = func.make_matrix(n[0], n[1], n[2], n[3], po, pw, pc, pb, ps)
         # while loop
         while func.loop_check_zero(matrix):
             # 2
             pivot_col_num = func.find_max_neg_col(matrix)
-            #print("pivot_col_num: ", pivot_col_num)
             col = func.sel_col(matrix, pivot_col_num)
             # 3
             pivot_row_num = func.sel_pivot_row_num(col, matrix)
-            #print("pivot_row_num: ", pivot_row_num)
             # 4
             pivot_ele = matrix[pivot_row_num][pivot_col_num]
             func.pivot_one(pivot_row_num, matrix, pivot_col_num, pivot_ele)
-            #print("matrix_pivot_one: ")
-            #func.matrix_print(matrix)
             # 5
             func.make_other_zero(matrix, pivot_row_num, pivot_col_num)
-            #print("five stage end:")
-            #func.matrix_print(matrix)
-            #count += 1
-            #print("count: " , count)
-        #print("loop finish")
-        #func.matrix_print(matrix)
         quantities = [0,0,0,0,0]
         for i in range(5):
             col = func.sel_col(matrix,i)

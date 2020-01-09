@@ -34,7 +34,7 @@ def sel_col(matrix, pivot_col_num):
         dummy.append(x[pivot_col_num])
     return dummy
 
-# 3-1
+# 3
 def sel_pivot_row_num(col, matrix):
     n = 0
     pivot_pos = 0
@@ -54,14 +54,14 @@ def sel_pivot_row_num(col, matrix):
         n = n + 1
     return pivot_pos
 
-# 4-1
+# 4
 def pivot_one(pivot_row_num, matrix, pivot_col_num, pivot_ele):
     dummy = []
     for i in matrix[pivot_row_num]:
         dummy.append(round((i / pivot_ele),2))
     matrix[pivot_row_num] = dummy
 
-# 5-1
+# 5
 def make_other_zero(matrix, pivot_row_num, pivot_col_num):
     pivot = matrix[pivot_row_num][pivot_col_num]
 
@@ -71,98 +71,6 @@ def make_other_zero(matrix, pivot_row_num, pivot_col_num):
         multiplier = -matrix[i][pivot_col_num] / pivot
         for j in range(len(matrix[0])):
             matrix[i][j] = multiplier * matrix[pivot_row_num][j] + matrix[i][j]
-# def make_other_zero(matrix, pivot_row_num, pivot_col_num):
-#     col_count = len(matrix[0])
-#     pivot = matrix[pivot_row_num][pivot_col_num]
-#     ele_row_num = 0
-#     # check whether each elements in pivot_col are 0  or not.
-#     while ele_row_num < len(matrix):
-#         ele = matrix[ele_row_num][pivot_col_num]
-#         if ele != 0 and ele_row_num != pivot_row_num:
-#             # if it is not 0
-#             if ele < 0:
-#                 # if it is positive number
-#                 if ele <= -100:
-#                     matrix_and_ele = plus_100(matrix, col_count, ele_row_num, pivot_row_num, pivot_col_num, ele)
-#                     matrix = matrix_and_ele[0]
-#                     ele = matrix_and_ele[1]
-#                     if ele <= -1:
-#                         matrix_and_ele = plus_1(matrix, col_count, ele_row_num, pivot_row_num, pivot_col_num,
-#                                                 ele)
-#                         matrix = matrix_and_ele[0]
-#                         ele = matrix_and_ele[1]
-#                 else:
-#                     if ele <= -1:
-#                         matrix_and_ele = plus_1(matrix, col_count, ele_row_num, pivot_row_num, pivot_col_num,
-#                                                 ele)
-#                         matrix = matrix_and_ele[0]
-#                         ele = matrix_and_ele[1]
-#             elif ele > 0:
-#                 if ele >= 100:
-#                     matrix_and_ele = minus_100(matrix, col_count, ele_row_num, pivot_row_num, pivot_col_num, ele)
-#                     matrix = matrix_and_ele[0]
-#                     ele = matrix_and_ele[1]
-#                     if ele >= 1:
-#                         matrix_and_ele = minus_1(matrix, col_count, ele_row_num, pivot_row_num, pivot_col_num,
-#                                                  ele)
-#                         matrix = matrix_and_ele[0]
-#                         ele = matrix_and_ele[1]
-#                 else:
-#                     if ele >= 1:
-#                         matrix_and_ele = minus_1(matrix, col_count, ele_row_num, pivot_row_num, pivot_col_num,
-#                                                  ele)
-#                         matrix = matrix_and_ele[0]
-#                         ele = matrix_and_ele[1]
-#         ele_row_num += 1
-#     return matrix
-
-# # 5-1
-# def plus_100(matrix, col_count, ele_row_num, pivot_row_num, pivot_col_num, ele):
-#     while ele <= -100:
-#         dummy = []
-#         k = 0
-#         while k < col_count:
-#             dummy.append(round((matrix[ele_row_num][k] + 100 * matrix[pivot_row_num][k]), 2))
-#             k += 1
-#         matrix[ele_row_num] = dummy
-#         ele = matrix[ele_row_num][pivot_col_num]
-#     return matrix, ele
-
-# # 5-2
-# def plus_1(matrix, col_count, ele_row_num, pivot_row_num, pivot_col_num, ele):
-#     while ele <= -1:
-#         dummy = []
-#         k = 0
-#         while k < col_count:
-#             dummy.append(round((matrix[ele_row_num][k] + 1 * matrix[pivot_row_num][k]), 2))
-#             k += 1
-#         matrix[ele_row_num] = dummy
-#         ele = matrix[ele_row_num][pivot_col_num]
-#     return matrix, ele
-
-# # 5-3
-# def minus_100(matrix, col_count, ele_row_num, pivot_row_num, pivot_col_num, ele):
-#     while ele >= 100:
-#         dummy = []
-#         k = 0
-#         while k < col_count:
-#             dummy.append(round((matrix[ele_row_num][k] - 100 * matrix[pivot_row_num][k]), 2))
-#             k += 1
-#         matrix[ele_row_num] = dummy
-#         ele = matrix[ele_row_num][pivot_col_num]
-#     return matrix, ele
-
-# # 5-4
-# def minus_1(matrix, col_count, ele_row_num, pivot_row_num, pivot_col_num, ele):
-    # while ele >= 1:
-    #     dummy = []
-    #     k = 0
-    #     while k < col_count:
-    #         dummy.append(round((matrix[ele_row_num][k] - 1 * matrix[pivot_row_num][k]), 2))
-    #         k += 1
-    #     matrix[ele_row_num] = dummy
-    #     ele = matrix[ele_row_num][pivot_col_num]
-    # return matrix, ele
 
 # 6
 def loop_check_zero(matrix):
